@@ -1,0 +1,27 @@
+﻿@model VidlyApi.Models.Customer
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<div>
+    @Html.LabelFor(m => m.Name)
+    @Html.DisplayTextFor(m=>m.Name)
+</div>
+<div>
+    @Html.LabelFor(m => m.BirthDate)
+    @Html.DisplayTextFor(m => m.BirthDate)
+</div>
+<div>
+    @Html.LabelFor(m=>m.MemberShipType)
+    @Html.DisplayTextFor(m=>m.MemberShipType)
+</div>
+<div>
+    @Html.LabelFor(m=>m.IsSubscribedToNewsletter)
+    @Html.DisplayTextFor(m=>m.IsSubscribedToNewsletter)
+</div>
+
+
+
+
