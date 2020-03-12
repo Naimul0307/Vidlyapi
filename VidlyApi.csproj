@@ -236,6 +236,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\Min18YearsIfAMemberAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -244,6 +245,10 @@
     <Compile Include="Migrations\202003090450285_Version1.cs" />
     <Compile Include="Migrations\202003090450285_Version1.designer.cs">
       <DependentUpon>202003090450285_Version1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003100625393_Update-Movies-Add-Genres.cs" />
+    <Compile Include="Migrations\202003100625393_Update-Movies-Add-Genres.designer.cs">
+      <DependentUpon>202003100625393_Update-Movies-Add-Genres.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -257,6 +262,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\NewCustomerViewModel.cs" />
+    <Compile Include="ViewModel\NewMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -317,6 +323,9 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\New.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\NewMovie.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -337,6 +346,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003090450285_Version1.resx">
       <DependentUpon>202003090450285_Version1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003100625393_Update-Movies-Add-Genres.resx">
+      <DependentUpon>202003100625393_Update-Movies-Add-Genres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -139,3 +139,4 @@ D:\VidlyApi\bin\AutoMapper.dll
 D:\VidlyApi\bin\AutoMapper.xml
 D:\VidlyApi\obj\Debug\VidlyApi.Migrations.Version1.resources
 D:\VidlyApi\obj\Debug\VidlyApi.csproj.GenerateResource.cache
+D:\VidlyApi\obj\Debug\VidlyApi.Migrations.UpdateMoviesAddGenres.resources

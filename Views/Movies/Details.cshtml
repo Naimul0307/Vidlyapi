@@ -1,0 +1,20 @@
+﻿@model  VidlyApi.Models.Movie
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    @Html.LabelFor(m => m.Name)
+    @Html.DisplayTextFor(m => m.Name)
+</div>
+<div>
+    @Html.LabelFor(m => m.ReleaseDate)
+    @Html.DisplayTextFor(m => m.ReleaseDate)
+</div>
+<div>
+    @Html.LabelFor(m => m.DateAdded)
+    @Html.DisplayTextFor(m => m.DateAdded)
+</div>

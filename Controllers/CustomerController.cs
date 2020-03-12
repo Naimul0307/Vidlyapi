@@ -61,16 +61,16 @@ namespace VidlyApi.Controllers
             return View(customer);
         }
 
-        public ActionResult Details(int id)
-        {
-            var customer = dbcontext.Customers.SingleOrDefault(c => c.Id == id);
+        //public ActionResult Details(int id)
+        //{
+        //    var customer = dbcontext.Customers.SingleOrDefault(c => c.Id == id);
 
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
-        }
+        //    if (customer == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(customer);
+        //}
         public ActionResult Edit(int id)
         {
             var customer = dbcontext.Customers.SingleOrDefault(c => c.Id == id);

@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿ using AutoMapper;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using System;
 using System.Collections.Generic;
@@ -60,10 +60,10 @@ namespace VidlyApi.Controllers.Api
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
             Mapper.Map(customerDto, customerInDb);
-            //customerInDb.Name = customerDto.Name;
-            //customerInDb.BirthDate = customerDto.BirthDate;
-            //customerInDb.IsSubscribedToNewsletter = customerDto.IsSubscribedToNewsletter;
-            //customerInDb.MemberShipTypeId = customerDto.MemberShipTypeId;
+            customerInDb.Name = customerDto.Name;
+            customerInDb.BirthDate = customerDto.BirthDate;
+            customerInDb.IsSubscribedToNewsletter = customerDto.IsSubscribedToNewsletter;
+            customerInDb.MemberShipTypeId = customerDto.MemberShipTypeId;
             db.SaveChanges();
         }
 
