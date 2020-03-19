@@ -3,6 +3,8 @@
     ViewBag.Title = "NewMovie";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
 
 <h2>New Movie</h2>
 
@@ -16,22 +18,51 @@
         @Html.LabelFor(m => m.Movie.Genre)
         @Html.DropDownListFor(m => m.Movie.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Selet Genres", new { @class = "form-control" })
     </div>
+
     <div class="form-group">
-        @Html.LabelFor(m => m.Movie.ReleaseDate)
-        @Html.TextBoxFor(m => m.Movie.ReleaseDate, new { @class = "form-control" })
-    </div>
+        <div>
+            @Html.LabelFor(m => m.Movie.ReleaseDate)
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Movie.ReleaseDate, new { @class = "datepicker", placeholder = "Select Release Date" })
+        </div>
+        </div>
+
     <div class="form-group">
-        @Html.LabelFor(m=>m.Movie.DateAdded)
-        @Html.TextBoxFor(m=>m.Movie.DateAdded, new { @class="form-control" })
+        <div>@Html.LabelFor(m => m.Movie.DateAdded)</div>
+        <div> @Html.TextBoxFor(m => m.Movie.DateAdded, new { @class = "datepicker", placeholder = "Select Added Date" })
+        </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m=>m.Movie.NumberInStock)
-        @Html.TextBoxFor(m=>m.Movie.NumberInStock, new { @class="form-control"})
-    </div>
-    <div>
-        @Html.HiddenFor(m=>m.Movie.Id)
-    </div>
-    <div>
-        <button type="submit" class="btn btn-primary">Save</button>
-    </div>
-}
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Movie.NumberInStock)
+            @Html.TextBoxFor(m => m.Movie.NumberInStock, new { @class = "form-control" })
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+        }
+
+        @*Date Picker*@
+
+        @section Scripts {
+            <script>
+
+                $(function () {
+                    $(".datepicker").datepicker({
+                        dateFormat: "dd/M/yy",
+                        changeMonth: true,
+                        changeYear: true,
+                        showOn: "both",
+                        yearRange: "-60:+0",
+                        buttonText: "<i class='fa fa-calendar'></i>"
+                    });
+
+                });
+            </script>
+            <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+        }
+
+
