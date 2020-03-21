@@ -2,19 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.Entity;
 using System.Web.Mvc;
 using VidlyApi.Models;
+using System.Data.Entity;
 using VidlyApi.ViewModel;
-using Eco.ViewModel.Runtime;
-using XLabs.Forms.Mvvm;
-
 namespace VidlyApi.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomersController : Controller
     {
         private ApplicationDbContext dbcontext;
-        public CustomerController()
+        public CustomersController()
         {
             dbcontext = new ApplicationDbContext();
         }
@@ -41,7 +38,7 @@ namespace VidlyApi.Controllers
             {
                 dbcontext.Customers.Add(customer);
             }
-            
+
             else
             {
                 var customerInDb = dbcontext.Customers.Single(c => c.Id == customer.Id);
@@ -49,28 +46,29 @@ namespace VidlyApi.Controllers
                 customerInDb.BirthDate = customer.BirthDate;
                 customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
                 customerInDb.MemberShipTypeId = customer.MemberShipTypeId;
-              
+
             }
             dbcontext.SaveChanges();
-            return RedirectToAction("Index", "Customer");
+            return RedirectToAction("Index", "Customers");
         }
         // GET: Customer
         public ViewResult Index()
         {
             var customer = dbcontext.Customers.Include(c => c.MemberShipType).ToList();
             return View(customer);
+            //return View();
         }
 
-        //public ActionResult Details(int id)
-        //{
-        //    var customer = dbcontext.Customers.SingleOrDefault(c => c.Id == id);
+        public ActionResult Details(int id)
+        {
+            var customer = dbcontext.Customers.SingleOrDefault(c => c.Id == id);
 
-        //    if (customer == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(customer);
-        //}
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customer);
+        }
         public ActionResult Edit(int id)
         {
             var customer = dbcontext.Customers.SingleOrDefault(c => c.Id == id);

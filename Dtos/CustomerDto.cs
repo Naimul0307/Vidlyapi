@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using VidlyApi.Models;
 
 namespace VidlyApi.Dtos
 {
@@ -15,9 +14,10 @@ namespace VidlyApi.Dtos
         public string Name { get; set; }
 
         public bool IsSubscribedToNewsletter { get; set; }
+
         public byte MemberShipTypeId { get; set; }
-        
-        [Min18YearsIfAMember]
+
+        [Display(Name = "Date of Birth")]
         public DateTime? BirthDate { get; set; }
 
     }

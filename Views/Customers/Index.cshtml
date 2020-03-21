@@ -1,0 +1,33 @@
+﻿@model IEnumerable<VidlyApi.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+<div>
+    <a href='@Url.Action("New","Customers")' class="btn bg-primary">New Customer</a>
+</div>
+<br />
+
+<table id=" customer" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Membership Type</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
+                <td>@customer.MemberShipType.Name</td>
+                <td><button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

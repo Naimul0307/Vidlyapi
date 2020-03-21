@@ -1,5 +1,4 @@
-﻿ using AutoMapper;
-using DocumentFormat.OpenXml.Office2010.Excel;
+﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,72 +12,80 @@ namespace VidlyApi.Controllers.Api
 {
     public class CustomersController : ApiController
     {
-        private ApplicationDbContext db;
+        private ApplicationDbContext dbContext;
+
         public CustomersController()
         {
-            db = new ApplicationDbContext();
+            dbContext = new ApplicationDbContext();
         }
-        //gets /api/customers
+        //Get /api/customer
         public IEnumerable<CustomerDto> GetCustomers()
         {
-            return db.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
+            return dbContext.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
         }
 
-        //gets /api/customers/1
-         public CustomerDto GetCustomer(int id)
+        //Get /api/customer/1
+
+        public CustomerDto GetCustomer(int id)
         {
-            var customer = db.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = dbContext.Customers.SingleOrDefault(c => c.Id == id);
             if (customer == null)
+            {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            return Mapper.Map<Customer,CustomerDto>(customer);
+            }
+            return Mapper.Map<Customer , CustomerDto>(customer);
         }
-        
-        //post /api/customers
+
+        //Post /api/customer
         [HttpPost]
         public CustomerDto CreateCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
+            {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
             var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
-            db.Customers.Add(customer);
-            db.SaveChanges();
+            dbContext.Customers.Add(customer);
+            dbContext.SaveChanges();
+
             customerDto.Id = customer.Id;
-
             return customerDto;
-
         }
 
-        //put /api/customers/1
+        //Put /api/customer/1
         [HttpPut]
         public void UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
+            {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            var customerInDb = db.Customers.SingleOrDefault(c => c.Id == id);
-
-            if(customerInDb==null)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
-
+            }
+            var customerInDb = dbContext.Customers.SingleOrDefault(c => c.Id == id);
+            if (customerInDb == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
             Mapper.Map(customerDto, customerInDb);
-            customerInDb.Name = customerDto.Name;
-            customerInDb.BirthDate = customerDto.BirthDate;
-            customerInDb.IsSubscribedToNewsletter = customerDto.IsSubscribedToNewsletter;
-            customerInDb.MemberShipTypeId = customerDto.MemberShipTypeId;
-            db.SaveChanges();
+
+            //customerInDb.Name = customer.Name;
+            //customerInDb.BirthDate = customer.BirthDate;
+            //customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+            //customerInDb.MemberShipTypeId = customer.MemberShipTypeId;
+
+            dbContext.SaveChanges();
         }
 
         //Delete /api/customer/1
         [HttpDelete]
         public void DeleteCustomer(int id)
         {
-            var customrInDb = db.Customers.SingleOrDefault(c => c.Id == id);
-
-            if (customrInDb == null)
+            var customerInDb = dbContext.Customers.SingleOrDefault(c => c.Id == id);
+            if (customerInDb == null)
+            {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            db.Customers.Remove(customrInDb);
-            db.SaveChanges();
-
-
+            }
+            dbContext.Customers.Remove(customerInDb);
+            dbContext.SaveChanges();
         }
     }
 }
